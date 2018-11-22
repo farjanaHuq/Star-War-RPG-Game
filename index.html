@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Star War RPG Game</title>
+    <link href="https://fonts.googleapis.com/css?family=Share+Tech+Mono" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+   <!--- <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <style>
+        .roboto {
+            font-family: 'Roboto', sans-serif;
+            font-size: 12px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class= "container" >
+        <h1 style="margin-left:50%"> Star War RPG Game!</h1>
+		<div id="section-main">
+			<!-- Where the characters are initially available to be selected. -->
+			<div id="section-character">
+				<div class="title"> Select The Character You Like: </div>
+			</div>
+			
+			<!-- Section for our selected character. -->
+			<div id="section-selected-character">
+				<div class="title"> Your Character </div>
+				<!-- Where our selected character will appear. -->
+				<div id="selected-character"></div>
+			</div>
+
+			<!-- Where our enemies available to attack will appear. -->
+			<div id="section-available-to-attack">
+				<div class="title"> Enemies Available To Attack </div>
+			</div>
+
+			<div class="title"> Fighting Area </div>
+			<div id="fight-section">
+				<button id="attack-button"> Attack </button>
+			</div>
+
+			<div id="action">
+				<div class="character-section">
+					<div class="title"> Defender </div>
+					<!-- Where our defender will appear. -->
+					<div id="defender"></div>
+				</div>
+			</div>
+
+        </div>
+    </div>
+
+	<!-- Area for game messages. -->
+	<div id="game-message"></div>
+
+
+<script src = "./assets/javascript/game.js"></script>
+</body>
+
+</html>
