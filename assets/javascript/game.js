@@ -46,30 +46,51 @@ $(document).ready(function () {
     }
   ];
 
-// Loads images in the section-character
-  for (var i = 0; i < characters.length; i++) {
+// Creates a section for characters - there names, images and health points
+
+var characterSection = function(character, createCharacters){
+    
+  var charDiv = $("<div class='character' data-name='" + character.name + "'>");
+  var charName = $("<div class = 'character-name'>").text(character.name);
+  var charImage = $("<img alt = 'image' class = 'character-image'>").attr("src", character.imageSrc);
+  var charHealth = $("<div class = 'character-health'>").text(character.healthPoint);
+  charDiv.append(charName);
+  charDiv.append(charImage);
+  charDiv.append(charHealth);
+  (createCharacters).append(charDiv);
+}
+
+$.each(characters, function(i, val){
+    characterSection(val, "#section-character");
+});
+
+  // for (var i = 0; i < characters.length; i++) {   
+
+  //       var image = $("<img>");
+  //       image.attr("src", characters[i].imageSrc);
+        
+  //       var textImg= $("<div></div>").text(characters[i].healthPoint);
+        
   
-    var image = $(`<img class = "image-container[${i}]">`);
-    var textImg = $("<textImg data-value>");
-    image.attr("src", characters[i].imageSrc);
-    textImg.attr("data-value", characters[i].healthPoint);
-    $("#section-character").append(image);
-    $(`.image-container[${i}]`).append(textImg);
-
-    image.css({
-       "height" : "120px",
-       "width" : "120px",
-       "position" : "relative"
-           
-    })
-    textImg.css({
-      "position" : "absolute",
-      "color" : "white"
-    })
-
+  //       $("#section-character").append(image);
+  //       // textImg.attr("data-value",characters[i].healthPoint);
+  //       image.append(textImg);
+       
+  //       image.css({
+  //           //  "background-image": "url(' " + characters[i].imageSrc + " ')",             
+  //             "background-size" : "cover",
+  //             "height" :`${120}px`,
+  //             "width" : `${120}px` , 
+  //             "color" : "white"          
+  //       });
+  //       textImg.css({
+  //         "color" : "white",
+  //         "text-align" : "center",
+  //         "float" : "left"
+  //       })
 
      
     
-  }
+  // }
 
 });

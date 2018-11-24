@@ -19,7 +19,7 @@
     font-size: 150%;
 }
 .section-character{
-    display: flex;
+    display: flex; 
     background-color: linen;
     margin-top: 5px;
     justify-content: space-around;
@@ -27,19 +27,7 @@
     width: 80%;
     height: 60%;
     padding : 10px, 10px;
+    float: left;
 }
   
-.character{
-    display: flex;
-    background-color: linen;
-    margin-top: 5px;
-    justify-content: space-around;
-    align-items: center;
-    height: 140px;
-    width: 100%;
-}
-.image-container{
-    margin-left: 5px;
-    margin-right: 5px;
-    border: 1px solid orange;
-}
+
