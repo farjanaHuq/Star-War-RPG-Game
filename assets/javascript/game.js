@@ -10,7 +10,7 @@
 // Execute this code when the DOM has fully loaded.
 
 $(document).ready(function () {
-  
+
   // VARIABLE DECLARATION
   // ===================================================================
 
@@ -45,52 +45,43 @@ $(document).ready(function () {
       attackBackPoint: 27
     }
   ];
+   
+  var enemy = "";
+  // Creates a section for characters - there names, images and health points
 
-// Creates a section for characters - there names, images and health points
+  var characterSection = function (character, createCharacters) {
 
-var characterSection = function(character, createCharacters){
-    
-  var charDiv = $("<div class='character' data-name='" + character.name + "'>");
-  var charName = $("<div class = 'character-name'>").text(character.name);
-  var charImage = $("<img alt = 'image' class = 'character-image'>").attr("src", character.imageSrc);
-  var charHealth = $("<div class = 'character-health'>").text(character.healthPoint);
-  charDiv.append(charName);
-  charDiv.append(charImage);
-  charDiv.append(charHealth);
-  (createCharacters).append(charDiv);
-}
+    var charDiv = $("<div class = 'character' data-name='" + character.name + "'>");
+    var charName = $("<div class = 'character-name'>").text(character.name);
+    var charImage = $("<img alt = 'image' class = 'character-image'>").attr("src", character.imageSrc);
+    var charHealth = $("<div class = 'character-health'>").text(character.healthPoint);
 
-$.each(characters, function(i, val){
-    characterSection(val, "#section-character");
-});
+    charImage.css({
+      "background-size": "cover",
+      "height": `${120}px`,
+      "width": `${150}px`,
+    });
+    charName.css({ "color": "black", "text-align": "center" });
+    charHealth.css({ "color": "red", "text-align": "center" });
 
-  // for (var i = 0; i < characters.length; i++) {   
+    charDiv.append(charName);
+    charDiv.append(charImage);
+    charDiv.append(charHealth);
+    $(createCharacters).append(charDiv);
+  }
 
-  //       var image = $("<img>");
-  //       image.attr("src", characters[i].imageSrc);
-        
-  //       var textImg= $("<div></div>").text(characters[i].healthPoint);
-        
-  
-  //       $("#section-character").append(image);
-  //       // textImg.attr("data-value",characters[i].healthPoint);
-  //       image.append(textImg);
-       
-  //       image.css({
-  //           //  "background-image": "url(' " + characters[i].imageSrc + " ')",             
-  //             "background-size" : "cover",
-  //             "height" :`${120}px`,
-  //             "width" : `${120}px` , 
-  //             "color" : "white"          
-  //       });
-  //       textImg.css({
-  //         "color" : "white",
-  //         "text-align" : "center",
-  //         "float" : "left"
-  //       })
+  //Initialize the game
+  var startTheGame = function () {
+    $.each(characters, function (i, val) {
+      characterSection(val, "#section-character");
+    });
+  }
+ 
+  startTheGame();
 
-     
-    
-  // }
-
+ // onclick function to select the player
+  $("#section-character").on("click", ".character" , function(){
+            $(this).attr("data-name");
+            console.log(true);
+  })
 });

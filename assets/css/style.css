@@ -1,6 +1,5 @@
 .html, body{
-    font-family: "Share Tech Mono", Arial, Helvetica, sans-serif;
-    
+    font-family: "Roboto", Arial, Helvetica, sans-serif;  
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-position: center;
@@ -18,16 +17,12 @@
 .title{
     font-size: 150%;
 }
-.section-character{
-    display: flex; 
-    background-color: linen;
-    margin-top: 5px;
-    justify-content: space-around;
-    align-items: center;
-    width: 80%;
-    height: 60%;
-    padding : 10px, 10px;
-    float: left;
-}
-  
+.character {
+    display: inline-block;
+    cursor: pointer;
+    background-color: orange;
+    border-color: black;
+    border-style: solid;
+    border-width: 3px;
+  }
 
