@@ -45,11 +45,13 @@ $(document).ready(function () {
       attackBackPoint: 27
     }
   ];
-   
-  var enemy = "";
+  
+    var fighter = " ";
+    var enemy = " ";
+    var restOfThePlayer = " ";
   // Creates a section for characters - there names, images and health points
 
-  var characterSection = function (character, createCharacters) {
+    var createCharacterSection = function (character, createCharacters) {
 
     var charDiv = $("<div class = 'character' data-name='" + character.name + "'>");
     var charName = $("<div class = 'character-name'>").text(character.name);
@@ -69,11 +71,11 @@ $(document).ready(function () {
     charDiv.append(charHealth);
     $(createCharacters).append(charDiv);
   }
-
+  
   //Initialize the game
   var startTheGame = function () {
     $.each(characters, function (i, val) {
-      characterSection(val, "#section-character");
+      createCharacterSection(val, "#section-character");
     });
   }
  
@@ -81,7 +83,14 @@ $(document).ready(function () {
 
  // onclick function to select the player
   $("#section-character").on("click", ".character" , function(){
-            $(this).attr("data-name");
-            console.log(true);
+            var selectChar = $(this).attr("data-name");
+            console.log(character.name);
+            if(fighter === selectChar){
+               $("#selected-character").append(fighter);
+               console.log("fighter " + true);
+            }else{
+              $("#section-enemy").append(enemy);
+              console.log(" enemy " + true);
+            }
   })
 });
