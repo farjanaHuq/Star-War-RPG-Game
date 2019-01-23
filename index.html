@@ -17,7 +17,11 @@
             font-family: 'Roboto', sans-serif;
             font-size: 12px;
         }
-    </style>
+	</style>
+	
+	<!-- jQuery Modal -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
 </head>
 
 <body>
@@ -34,7 +38,7 @@
 			<div id="section-selected-character">
 				<div class="title"> Select Your Fighter </div>
 				<!-- The selected character will appear here. -->
-				<div id="selected-character"></div>
+				<div id="fighter"></div>
 			</div>
 
 			<!-- The enemies available to attack will appear in this section. -->
@@ -57,7 +61,30 @@
 
 		</div>
 		<!-- Area for game messages. -->
-	    <div id="game-message"></div>
+	    <div id="game-message">
+			<p id = "first-message"></p>
+			<p id = "second-message"></p>
+		</div>
+		   <!-- The Modal -->
+		   <div class="modal" id="myModal">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<!-- Modal Header -->
+					<div class="modal-header">
+						<h4 class="modal-title">Error Message</h4>
+						<button type="button" class="close" data-dismiss="modal">&times;</button>
+					</div>
+	
+					<!-- Modal body -->
+					<div class="modal-body" id="modal-text">
+					</div>
+	
+					<!-- Modal footer -->
+					<div class="modal-footer">
+						<button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+					</div>
+				</div>
+			</div>
     </div>
 
 	
