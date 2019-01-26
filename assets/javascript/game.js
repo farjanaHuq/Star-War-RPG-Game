@@ -36,14 +36,14 @@ $(document).ready(function () {
       healthPoint: 150,
       attackPoint: 12,
       imageSrc: "./assets/images/HK-47.png",
-      attackBackPoint: 20
+      attackBackPoint: 10
     },
     "kyle-kataram": {
       name: "kyle-kataram",
       healthPoint: 180,
       attackPoint: 6,
       imageSrc: "./assets/images/kyle-kataram.jpg",
-      attackBackPoint: 27
+      attackBackPoint: 7
     }
   };
   // variables to store fighter, enemies, defender, wins, losses
@@ -141,7 +141,6 @@ $(document).ready(function () {
           for(var i =0; i<defenderArr.length; i++){
             createCharacterSection(defenderArr[i], "#defender");         
           }   
-         // updateCharacter(defenderArr, "#defender");
       }
       else {
         console.log("Select your defender.");
@@ -160,15 +159,28 @@ $(document).ready(function () {
       var opponentHP = defender.healthPoint - fighter.attackPoint*turnCounter;
       var fighterHP = fighter.healthPoint - defender.attackBackPoint;
       deleteMessage();
-     // updateHealthPoint(fighterHP, opponentHP);
+    
       if(defender.healthPoint>0){
-            updateHealthPoint(fighterHP, opponentHP);  
-                         
+          updateHealthPoint(fighterHP, opponentHP);               
       }
+      else if(defender.healthPoint === 0){
+
+       
+        generateMessage(`You attacked ${defender.name} for ${opponentHP} damage. `) ;
+        generateMessage("Add another defender.") ;
+          
+        if(killCount>=enemies.length){
+          generateMessage("Congratulation!!! You have won the game!");
+        }
+        killCount++;
+      }  
       else if(fighter.healthPoint<0){
         generateMessage("Sorry, You loose the game.");
-        $("attack-button").off("click");
+        $("#attack-button").off("click");
+        $("#section-enemy").off("click");
+        restartGame();
       }
+     
       turnCounter++;
     }
     else{
@@ -192,12 +204,13 @@ $(document).ready(function () {
     var restart = $("<button>Restart</button>").click(function() {
       location.reload();
    });
+   }
 
    var updateCharacter = function(character, sectionCharacter) {
     // First we empty the area so that we can re-render the new object
     $(sectionCharacter).empty();
     createCharacterSection(character, sectionCharacter);
-  };
+   };
 
 
   // //callback function to remove the selected defender from 'Enemies' section
