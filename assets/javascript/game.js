@@ -99,7 +99,7 @@ $(document).ready(function () {
   $("#section-character").on("click", ".character", function () {
     var selectChar = $(this).attr("data-name");
     // console.log(selectChar);
-
+  
     if ($("#fighter").children().length === 0){
       fighter = characters[selectChar];
       createCharacterSection(fighter, "#fighter");
@@ -130,6 +130,7 @@ $(document).ready(function () {
       var selectDefender = $(this).attr("data-name");
       defender = characters[selectDefender];
       deleteMessage();
+      
      // defenderArr.push(defender);  
       if ($("#defender").children().length === 0) {   
         createCharacterSection(defender, "#defender");
@@ -161,35 +162,42 @@ $(document).ready(function () {
       deleteMessage();
     
       if(defender.healthPoint>0){
-          updateHealthPoint(fighterHP, opponentHP);               
-      }
-      else if(defender.healthPoint === 0){
 
-       
-        generateMessage(`You attacked ${defender.name} for ${opponentHP} damage. `) ;
-        generateMessage("Add another defender.") ;
-          
-        if(killCount>=enemies.length){
-          generateMessage("Congratulation!!! You have won the game!");
-        }
-        killCount++;
-      }  
-      else if(fighter.healthPoint<0){
-        generateMessage("Sorry, You loose the game.");
-        $("#attack-button").off("click");
-        $("#section-enemy").off("click");
-        restartGame();
+        updateHealthPoint(fighterHP, opponentHP); 
+
+          if(fighter.healthPoint<0){
+
+            console.log("looser");
+            generateMessage("Sorry, You loose the game.");
+
+            $("#attack-button").off("click");
+            $("#section-enemy").off("click");
+            restartGame();
+          }                  
       }
-     
+      else {
+        generateMessage("Add another defender.");
+        updateHealthPoint(fighterHP, opponentHP);  
+
+        killCount++;
+
+        if(killCount >= 3){    
+          deleteMessage();     
+          generateMessage("Congratulation!!! You have won the game!");
+          $("#attack-button").off("click");
+          restartGame();
+        }  
+      }       
       turnCounter++;
     }
-    else{
+    else {
       deleteMessage();
       generateMessage("Enemies to choose.");
     }
 
   });
-  // <--------------------------------------Instructions--------------------------------------------------->
+
+  // <---------------------------------------------Instructions--------------------------------------------------->
   // * The player will now be able to click the `attack` button.
   //    * Whenever the player clicks `attack`, their character damages the defender.
   //    * The opponent will lose `HP` (health points). These points are displayed at the bottom of the defender's picture. 
@@ -206,11 +214,11 @@ $(document).ready(function () {
    });
    }
 
-   var updateCharacter = function(character, sectionCharacter) {
-    // First we empty the area so that we can re-render the new object
-    $(sectionCharacter).empty();
-    createCharacterSection(character, sectionCharacter);
-   };
+  //  var updateCharacter = function(character, sectionCharacter) {
+  //   // First we empty the area so that we can re-render the new object
+  //   $(sectionCharacter).empty();
+  //   createCharacterSection(character, sectionCharacter);
+  //  };
 
 
   // //callback function to remove the selected defender from 'Enemies' section
@@ -235,32 +243,35 @@ $(document).ready(function () {
 
     // console.log(fighter.name + ":" + fighter.healthPoint);
     // console.log(defender.name + ":" + defender.healthPoint);
+      console.log("Fighter "+ fighter.name);
+      fighter.healthPoint = newFighterHP;
+      defender.healthPoint = newOpponentHP;
+      //removes the div where all characters were displayed at the begining
+      $("#section-character").remove();
 
-    fighter.healthPoint = newFighterHP;
-    defender.healthPoint = newOpponentHP;
-    //removes the div where all characters were displayed at the begining
-    $("#section-character").remove();
+      //change the health point after attack
+      // $("#character-health").attr({
+      //   "data-health" : `HP-${fighter.name}`
+      // }).text(newFighterHP);
+      $(`data-health, HP-${fighter.name}`).text(newFighterHP);
 
-    //change the health point after attack
-    $("#character-health").attr({
-      "data-health": `HP-${fighter.name}`
-    }).text(newFighterHP);
-
-    $("#character-health").attr({
-      "data-health": `HP-${defender.name}`
-    }).text(newOpponentHP);
-
-    //change the game updates after each
-    var firstMessage =`You attacked ${defender.name} for ${newOpponentHP} damage.`;
-    var secondMessage = `${defender.name} attacked you back for ${newFighterHP} damage.`;
-    generateMessage(firstMessage);
-    generateMessage(secondMessage);
+      // $("#character-health").attr({
+      //   "data-health": `HP-${defender.name}`
+      // }).text(newOpponentHP);
+       $(`data-health HP-${defender.name}`).text(newOpponentHP);
+      //change the game updates after each
+      var firstMessage =`You attacked ${defender.name} for ${newOpponentHP} damage.`;
+      var secondMessage = `${defender.name} attacked you back for ${newFighterHP} damage.`;
+      generateMessage(firstMessage);
+      generateMessage(secondMessage);
 }
+
 // generates game messages
 var generateMessage = function(message){
-  var newMessage = $("<div>").text(message);
-  $("#game-message").append(newMessage);
-  $("#game-message").css({ "color": "white" });
+
+   var newMessage = $("<div>").text(message);
+   $("#game-message").append(newMessage);
+   $("#game-message").css({ "color": "white" });
 }
 
 var deleteMessage = function(){
