@@ -1,5 +1,5 @@
 # Star-War-RPG-Game
-#jquery assignment
+#Jquery
 
 Game Instructions
 
